@@ -1,4 +1,4 @@
-package ru.practicum.controller;
+package ru.practicum.ewm.stats.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -7,9 +7,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.EndpointHit;
-import ru.practicum.ViewStats;
-import ru.practicum.service.StatsService;
+import ru.practicum.ewm.stats.EndpointHit;
+import ru.practicum.ewm.stats.ViewStats;
+import ru.practicum.ewm.stats.service.StatsService;
 
 import java.time.LocalDateTime;
 import java.util.List;

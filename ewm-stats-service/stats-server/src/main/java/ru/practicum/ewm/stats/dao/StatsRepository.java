@@ -1,11 +1,11 @@
-package ru.practicum.dao;
+package ru.practicum.ewm.stats.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import ru.practicum.ViewStats;
-import ru.practicum.entity.Stat;
+import ru.practicum.ewm.stats.ViewStats;
+import ru.practicum.ewm.stats.entity.Stat;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface StatsRepository extends JpaRepository<Stat, Long> {
     @Query("""
-           SELECT new ru.practicum.ViewStats(
+           SELECT new ru.practicum.ewm.stats.ViewStats(
              st.app,
              st.uri,
              COUNT(st.id)
@@ -31,7 +31,7 @@ public interface StatsRepository extends JpaRepository<Stat, Long> {
 
     // Подсчёт УНИКАЛЬНЫХ IP (distinct).
     @Query("""
-           SELECT new ru.practicum.ViewStats(
+           SELECT new ru.practicum.ewm.stats.ViewStats(
              st.app,
              st.uri,
              COUNT(DISTINCT st.ip)
