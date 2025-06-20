@@ -10,7 +10,6 @@ import ru.practicum.ewm.stats.entity.Stat;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Repository
 public interface StatsRepository extends JpaRepository<Stat, Long> {
     @Query("""
            SELECT new ru.practicum.ewm.stats.ViewStats(
