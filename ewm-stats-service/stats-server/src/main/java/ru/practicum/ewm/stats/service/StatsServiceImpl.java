@@ -11,7 +11,10 @@ import ru.practicum.ewm.stats.entity.Stat;
 import ru.practicum.ewm.stats.exception.ValidationException;
 import ru.practicum.ewm.stats.mapper.StatMapper;
 
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
 
@@ -21,6 +24,7 @@ import java.util.List;
 @Slf4j
 public class StatsServiceImpl implements StatsService {
     private final StatsRepository statsRepository;
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     @Override
     @Transactional
@@ -31,7 +35,12 @@ public class StatsServiceImpl implements StatsService {
     }
 
     @Override
-    public List<ViewStats> getStats(LocalDateTime start, LocalDateTime end, List<String> uris, Boolean unique) {
+    public List<ViewStats> getStats(String startStr, String endStr, List<String> uris, Boolean unique) {
+        String decodedStart = URLDecoder.decode(startStr, StandardCharsets.UTF_8);
+        String decodedEnd = URLDecoder.decode(endStr, StandardCharsets.UTF_8);
+
+        LocalDateTime start = LocalDateTime.parse(decodedStart, FORMATTER);
+        LocalDateTime end = LocalDateTime.parse(decodedEnd, FORMATTER);
         log.info("ESS getStats() с start: {}, end: {}, uris: {}, unique: {}",start,end,uris,unique);
 
         if (start.isAfter(end)) {
@@ -43,13 +52,16 @@ public class StatsServiceImpl implements StatsService {
         }
 
         boolean urisEmpty = uris.isEmpty();
+        List<ViewStats> viewStatsList;
 
         if (Boolean.TRUE.equals(unique)) {
             // Считаем уникальные IP
-            return statsRepository.getUniqueStats(start, end, uris, urisEmpty);
+            viewStatsList = statsRepository.getUniqueStats(start, end, uris, urisEmpty);
         } else {
             // Считаем все запросы
-            return statsRepository.getAllStats(start, end, uris, urisEmpty);
+            viewStatsList = statsRepository.getAllStats(start, end, uris, urisEmpty);
         }
+        log.info("ESS getStats() отправлено viewStatsList: {}",viewStatsList);
+        return viewStatsList;
     }
 }
