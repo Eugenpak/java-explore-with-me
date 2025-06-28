@@ -60,7 +60,7 @@ public class StatsServiceImpl  implements StatsService {
 
             List<?> list = (List<?>) responseBody;
             viewStatsList = new ArrayList<>();
-            for (int i=0; i<list.size();i++) {
+            for (int i = 0; i < list.size();i++) {
                 LinkedHashMap<String, Object> linkedHashMap = new LinkedHashMap<>();
                 linkedHashMap = (LinkedHashMap<String, Object>) list.get(0);
                 ViewStats viewStats = new ViewStats();
