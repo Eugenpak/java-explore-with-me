@@ -43,16 +43,7 @@ public class UserServiceImpl implements UserService {
             throw new DuplicatedDataException("Пользователь с таким email = " + email +
                     " уже существует.");
         }
-        /*
-        System.out.println("createUser() opt = " + optionalUser.get().getEmail());
-        boolean exists = userRepository.findAll().stream()
-                .anyMatch(user -> user.getEmail().equalsIgnoreCase(email));
 
-        if (exists) {
-            throw new DuplicatedDataException("Пользователь с таким email = " + email +
-                    " уже существует.");
-        }
-        */
         User user = userRepository.save(UserMapper.mapToUser(userRequestDto));
         return UserMapper.mapToUserDto(user);
     }

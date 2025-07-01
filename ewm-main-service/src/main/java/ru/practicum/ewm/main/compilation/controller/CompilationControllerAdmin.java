@@ -3,14 +3,13 @@ package ru.practicum.ewm.main.compilation.controller;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.ewm.main.compilation.dto.CompilationRequestDto;
 import ru.practicum.ewm.main.compilation.dto.CompilationResponseDto;
 import ru.practicum.ewm.main.compilation.dto.UpdateCompilationDto;
 import ru.practicum.ewm.main.compilation.service.CompilationService;
 
-@Validated
+//@Validated
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/admin/compilations")

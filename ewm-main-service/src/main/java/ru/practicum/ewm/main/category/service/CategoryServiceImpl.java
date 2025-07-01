@@ -27,8 +27,6 @@ public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
     private final EventRepository eventRepository;
 
-
-
     @Override
     @Transactional
     public CategoryResponseDto createCategory(CategoryRequestDto categoryRequestDto) {
@@ -38,10 +36,7 @@ public class CategoryServiceImpl implements CategoryService {
             throw new DuplicatedDataException("Категория с таким name = " + nameDto +
                     " уже существует.");
         }
-        /*
-        if (categoryRepository.findAll().contains(CategoryMapper.mapToCategory(categoryRequestDto))) {
-            throw new DuplicatedDataException("Эта категория уже существует.");
-        } */
+
         Category category = categoryRepository.save(CategoryMapper.mapToCategory(categoryRequestDto));
         return CategoryMapper.mapToCategoryResponseDto(category);
     }
