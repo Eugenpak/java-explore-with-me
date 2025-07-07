@@ -1,0 +1,1657 @@
+{
+	"info": {
+		"_postman_id": "3b427be8-1a50-4408-951c-ce4d7b7e4bb9",
+		"name": "Ewm feature_comments",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41933169"
+	},
+	"item": [
+		{
+			"name": "Add new User1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// описываем отдельный тест-кейс и перечисляем проверяемые утверждения\r",
+							" const body = pm.response.json(); \r",
+							"\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function() {\r",
+							"    pm.response.to.have.status(201); // код ответа должен быть равен 200 OK\r",
+							"    pm.response.to.be.withBody; // ответ должен содержать тело\r",
+							"    pm.response.to.be.json; // и тело ответа должно быть в формате JSON\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'id'\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.id).is.exist; // проверяем, что в теле ответа поле id\r",
+							"    pm.collectionVariables.set('user1.id', body.id);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"awa\",\r\n    \"email\": \"awa-2025@inbox.ru\"\r\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/admin/users",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"admin",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add new User2 (guest)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							" const body = pm.response.json(); \r",
+							"\r",
+							"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function() {\r",
+							"    pm.response.to.have.status(201); // код ответа должен быть равен 200 OK\r",
+							"    pm.response.to.be.withBody; // ответ должен содержать тело\r",
+							"    pm.response.to.be.json; // и тело ответа должно быть в формате JSON\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'id'\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.id).is.exist; // проверяем, что в теле ответа поле id\r",
+							"    pm.collectionVariables.set('user2.id', body.id);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"guest\",\r\n    \"email\": \"guest-2025@inbox.ru\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/admin/users",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"admin",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add new Categories",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// описываем отдельный тест-кейс и перечисляем проверяемые утверждения\r",
+							" const body = pm.response.json(); \r",
+							"\r",
+							"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function() {\r",
+							"    pm.response.to.have.status(201); // код ответа должен быть равен 200 OK\r",
+							"    pm.response.to.be.withBody; // ответ должен содержать тело\r",
+							"    pm.response.to.be.json; // и тело ответа должно быть в формате JSON\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'id'\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.id).is.exist; // проверяем, что в теле ответа поле id\r",
+							"    pm.collectionVariables.set('cat.id', body.id);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'name'\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.name).is.exist; // проверяем, что в теле ответа поле id\r",
+							"    pm.collectionVariables.set('cat.name', body.name);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"awa - событие в июле\"\r\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/admin/categories",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"admin",
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add new Event",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const body = JSON.parse(pm.request.body.raw);\r",
+							"body.category = pm.collectionVariables.get(\"cat.id\");\r",
+							"pm.request.body.raw = body;\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const body = pm.response.json(); \r",
+							"pm.collectionVariables.set('event.id', body.id);\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function() {\r",
+							"    pm.response.to.have.status(201); // код ответа должен быть равен 200 OK\r",
+							"    pm.response.to.be.withBody; // ответ должен содержать тело\r",
+							"    pm.response.to.be.json; // и тело ответа должно быть в формате JSON\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'initiator'\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.initiator).is.exist; // проверяем, что в теле ответа поле id\r",
+							"    \r",
+							"    var initiatorNumber = Number(pm.collectionVariables.get('user1.id'));\r",
+							"    pm.expect(body.initiator.id).to.eql(initiatorNumber);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'category'\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.category).is.exist; // проверяем, что в теле ответа поле category\r",
+							"    pm.expect(body.category.id).to.eql(pm.collectionVariables.get('cat.id'));\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"annotation\": \"annotation annotation annotation\",\r\n    \"category\": 0,\r\n    \"description\": \"description description description description description\",\r\n    \"eventDate\": \"2025-07-18 19:00:00\",\r\n    \"location\": {\"lat\": 70.70,\"lon\": 45.45},    \r\n    \"title\": \"title event\"\r\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/events",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"events"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "{{user1.id}}",
+							"description": "(Required) id текущего пользователя"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BAD add comment not PUBLISHED event (CONFLICT)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const body = pm.response.json(); \r",
+							"\r",
+							"pm.test(\"Ответ должен содержать код статуса 409 и данные в формате json\", function() {\r",
+							"    pm.response.to.have.status(409); // код ответа должен быть равен 200 OK\r",
+							"    pm.response.to.be.withBody; // ответ должен содержать тело\r",
+							"    pm.response.to.be.json; // и тело ответа должно быть в формате JSON\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'status' и значение 'CONFLICT'\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.status).is.exist; // проверяем, что в теле ответа поле state\r",
+							"    pm.expect(body.status).to.eql(\"CONFLICT\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"comment\": \"CONFLICT. Комментарий к событием в июле 2025 г.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/events/:eventId/comments",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"events",
+						":eventId",
+						"comments"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "{{user1.id}}"
+						},
+						{
+							"key": "eventId",
+							"value": "{{event.id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add approve  Event By Admin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const body = pm.response.json(); \r",
+							"\r",
+							"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function() {\r",
+							"    pm.response.to.have.status(200); // код ответа должен быть равен 200 OK\r",
+							"    pm.response.to.be.withBody; // ответ должен содержать тело\r",
+							"    pm.response.to.be.json; // и тело ответа должно быть в формате JSON\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'initiator'\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.initiator).is.exist; // проверяем, что в теле ответа поле id\r",
+							"    \r",
+							"    var initiatorNumber = Number(pm.collectionVariables.get('user1.id'));\r",
+							"    pm.expect(body.initiator.id).to.eql(initiatorNumber);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'category'\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.category).is.exist; // проверяем, что в теле ответа поле id\r",
+							"    pm.expect(body.category.id).to.eql(pm.collectionVariables.get('cat.id'));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'state' и значение 'PUBLISHED'\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.state).is.exist; // проверяем, что в теле ответа поле state\r",
+							"    pm.expect(body.state).to.eql(\"PUBLISHED\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'publishedOn' и значение не пустое\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.publishedOn).is.exist; // проверяем, что в теле ответа поле publishedOn    \r",
+							"    pm.expect(body.publishedOn).not.to.be.empty;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"annotation\": \"annotation after approve\",\r\n    \"category\": {{cat.id}},\r\n    \"description\": \"description description description description description\",\r\n    \"eventDate\": \"2025-07-18 19:00:00\",\r\n    \"participantLimit\": 0,\r\n    \"stateAction\": \"PUBLISH_EVENT\",\r\n    \"title\": \"title event\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/admin/events/:eventId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"admin",
+						"events",
+						":eventId"
+					],
+					"variable": [
+						{
+							"key": "eventId",
+							"value": "{{event.id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add comment user1 (owner event)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const body = pm.response.json(); \r",
+							"pm.collectionVariables.set('comment.id', body.id);\r",
+							"const notUserId = Number(pm.collectionVariables.get('user1.id'))+2;\r",
+							"const notEventId = Number(pm.collectionVariables.get('event.id'))+10;\r",
+							"pm.collectionVariables.set('notUser.id', notUserId);\r",
+							"pm.collectionVariables.set('notEvent.id', notEventId);\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function() {\r",
+							"    pm.response.to.have.status(201); // код ответа должен быть равен 200 OK\r",
+							"    pm.response.to.be.withBody; // ответ должен содержать тело\r",
+							"    pm.response.to.be.json; // и тело ответа должно быть в формате JSON\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'event'\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.event).is.exist; // проверяем, что в теле ответа поле event\r",
+							"    pm.expect(body.event.id).to.eql(Number(pm.collectionVariables.get('event.id')));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'creatorName' и значение не пустое\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.creatorName).is.exist; // проверяем, что в теле ответа поле state\r",
+							"    pm.expect(body.creatorName).not.to.be.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'created' и значение не пустое\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.created).is.exist; // проверяем, что в теле ответа поле publishedOn    \r",
+							"    pm.expect(body.created).not.to.be.empty;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"comment\": \"Комментарий к событием в июле 2025 г.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/events/:eventId/comments",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"events",
+						":eventId",
+						"comments"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "{{user1.id}}"
+						},
+						{
+							"key": "eventId",
+							"value": "{{event.id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add comment2 user1 (owner event)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const body = pm.response.json(); \r",
+							"pm.collectionVariables.set('comment2.id', body.id);\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function() {\r",
+							"    pm.response.to.have.status(201); // код ответа должен быть равен 200 OK\r",
+							"    pm.response.to.be.withBody; // ответ должен содержать тело\r",
+							"    pm.response.to.be.json; // и тело ответа должно быть в формате JSON\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'event'\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.event).is.exist; // проверяем, что в теле ответа поле event\r",
+							"    pm.expect(body.event.id).to.eql(Number(pm.collectionVariables.get('event.id')));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'creatorName' и значение не пустое\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.creatorName).is.exist; // проверяем, что в теле ответа поле state\r",
+							"    pm.expect(body.creatorName).not.to.be.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'created' и значение не пустое\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.created).is.exist; // проверяем, что в теле ответа поле publishedOn    \r",
+							"    pm.expect(body.created).not.to.be.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'id' и значение не равно {{comment.id}}\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.created).is.exist; // проверяем, что в теле ответа поле publishedOn    \r",
+							"    pm.expect(body.id).not.eql(pm.collectionVariables.get('comment.id'));\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"comment\": \"С2. Обязательно приходите с друзьями\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/events/:eventId/comments",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"events",
+						":eventId",
+						"comments"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "{{user1.id}}"
+						},
+						{
+							"key": "eventId",
+							"value": "{{event.id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add comment3 user2 (not owner event)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const body = pm.response.json(); \r",
+							"pm.collectionVariables.set('comment3.id', body.id);\r",
+							"const notCommentId = body.id + 10; // создаем переменную для несуществующего комментария\r",
+							"pm.collectionVariables.set('notComment.id', notCommentId);\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function() {\r",
+							"    pm.response.to.have.status(201); // код ответа должен быть равен 200 OK\r",
+							"    pm.response.to.be.withBody; // ответ должен содержать тело\r",
+							"    pm.response.to.be.json; // и тело ответа должно быть в формате JSON\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'event'\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.event).is.exist; // проверяем, что в теле ответа поле event\r",
+							"    pm.expect(body.event.id).to.eql(Number(pm.collectionVariables.get('event.id')));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'creatorName' и значение не пустое\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.creatorName).is.exist; // проверяем, что в теле ответа поле state\r",
+							"    pm.expect(body.creatorName).not.to.be.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'created' и значение не пустое\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.created).is.exist; // проверяем, что в теле ответа поле publishedOn    \r",
+							"    pm.expect(body.created).not.to.be.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'creatorName', не равное имени владельца события.\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.creatorName).is.exist; // проверяем, что в теле ответа поле publishedOn  \r",
+							"    const eventOwnerName = body.event.initiator.name;\r",
+							"    pm.expect(body.creatorName).not.to.eql(eventOwnerName);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"comment\": \"С3. Интересное событие. Новая локация. Обязательно приду!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/events/:eventId/comments",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"events",
+						":eventId",
+						"comments"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "{{user2.id}}"
+						},
+						{
+							"key": "eventId",
+							"value": "{{event.id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BAD add comment not available Path Variables userId (BAD_REQUEST)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const body = pm.response.json(); \r",
+							"\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать код статуса 400 и данные в формате json\", function() {\r",
+							"    pm.response.to.have.status(400); // код ответа должен быть равен 200 OK\r",
+							"    pm.response.to.be.withBody; // ответ должен содержать тело\r",
+							"    pm.response.to.be.json; // и тело ответа должно быть в формате JSON\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'status' и значение 'BAD_REQUEST'\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.status).is.exist; // проверяем, что в теле ответа поле state\r",
+							"    pm.expect(body.status).to.eql(\"BAD_REQUEST\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"comment\": \"Комментарий к событием в июле 2025 г.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/events/:eventId/comments",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"events",
+						":eventId",
+						"comments"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "{{user1.id}} +2"
+						},
+						{
+							"key": "eventId",
+							"value": "{{event.id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BAD add comment not available userId (NOT_FOUND)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const body = pm.response.json(); \r",
+							"\r",
+							"pm.test(\"Ответ должен содержать код статуса 404 и данные в формате json\", function() {\r",
+							"    pm.response.to.have.status(404); // код ответа должен быть равен 200 OK\r",
+							"    pm.response.to.be.withBody; // ответ должен содержать тело\r",
+							"    pm.response.to.be.json; // и тело ответа должно быть в формате JSON\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'status' и значение 'NOT_FOUND'\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.status).is.exist; // проверяем, что в теле ответа поле state\r",
+							"    pm.expect(body.status).to.eql(\"NOT_FOUND\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"comment\": \"Комментарий к событием в июле 2025 г.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/events/:eventId/comments",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"events",
+						":eventId",
+						"comments"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "{{notUser.id}}"
+						},
+						{
+							"key": "eventId",
+							"value": "{{event.id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BAD add comment not available eventId (NOT_FOUND)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const body = pm.response.json(); \r",
+							"\r",
+							"pm.test(\"Ответ должен содержать код статуса 404 и данные в формате json\", function() {\r",
+							"    pm.response.to.have.status(404); // код ответа должен быть равен 200 OK\r",
+							"    pm.response.to.be.withBody; // ответ должен содержать тело\r",
+							"    pm.response.to.be.json; // и тело ответа должно быть в формате JSON\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'status' и значение 'NOT_FOUND'\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.status).is.exist; // проверяем, что в теле ответа поле state\r",
+							"    pm.expect(body.status).to.eql(\"NOT_FOUND\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"comment\": \"BAD. Комментарий к событием в июле 2025 г.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/events/:eventId/comments",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"events",
+						":eventId",
+						"comments"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "{{user1.id}}"
+						},
+						{
+							"key": "eventId",
+							"value": "{{notEvent.id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update comment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const body = pm.response.json(); \r",
+							"\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function() {\r",
+							"    pm.response.to.have.status(200); // код ответа должен быть равен 200 OK\r",
+							"    pm.response.to.be.withBody; // ответ должен содержать тело\r",
+							"    pm.response.to.be.json; // и тело ответа должно быть в формате JSON\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"comment\": \"Комментарий к событием в 18 июля 2025 г (id={{comment.id}}). (Коммент. после редакции и согласования)\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/comments/:commentId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"comments",
+						":commentId"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "{{uid}}"
+						},
+						{
+							"key": "commentId",
+							"value": "{{comment.id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all comments by event id and user id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const body = pm.response.json(); \r",
+							"\r",
+							"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function() {\r",
+							"    pm.response.to.have.status(200); // код ответа должен быть равен 200 OK\r",
+							"    pm.response.to.be.withBody; // ответ должен содержать тело\r",
+							"    pm.response.to.be.json; // и тело ответа должно быть в формате JSON\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать массив, размер массива 2 \", function() {\r",
+							"    pm.expect(body).is.an('array');\r",
+							"    pm.expect(body).to.have.lengthOf(2);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/events/:eventId/comments?offset&limit",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"events",
+						":eventId",
+						"comments"
+					],
+					"query": [
+						{
+							"key": "offset",
+							"value": null,
+							"description": "(defaultValue = \"0\")"
+						},
+						{
+							"key": "limit",
+							"value": null,
+							"description": "(defaultValue = \"10\")"
+						}
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "{{user1.id}}"
+						},
+						{
+							"key": "eventId",
+							"value": "{{event.id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get comment by event id, user id and search text",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const body = pm.response.json(); \r",
+							"\r",
+							"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function() {\r",
+							"    pm.response.to.have.status(200); // код ответа должен быть равен 200 OK\r",
+							"    pm.response.to.be.withBody; // ответ должен содержать тело\r",
+							"    pm.response.to.be.json; // и тело ответа должно быть в формате JSON\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать массив, размер массива 1 \", function() {\r",
+							"    pm.expect(body).is.an('array');\r",
+							"    pm.expect(body).to.have.lengthOf(1);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/events/:eventId/comments/search?comment=tag-1807&offset&limit",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"events",
+						":eventId",
+						"comments",
+						"search"
+					],
+					"query": [
+						{
+							"key": "comment",
+							"value": "tag-1807",
+							"description": "(required)"
+						},
+						{
+							"key": "offset",
+							"value": null,
+							"description": "(defaultValue = \"0\")"
+						},
+						{
+							"key": "limit",
+							"value": null,
+							"description": "(defaultValue = \"10\")"
+						}
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "{{user1.id}}"
+						},
+						{
+							"key": "eventId",
+							"value": "{{event.id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BAD delete comment by user id and event id (NOT_FOUND)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const body = pm.response.json(); \r",
+							"\r",
+							"pm.test(\"Ответ должен содержать код статуса 404 и данные в формате json\", function() {\r",
+							"    pm.response.to.have.status(404); // код ответа должен быть равен 200 OK\r",
+							"    pm.response.to.be.withBody; // ответ должен содержать тело\r",
+							"    pm.response.to.be.json; // и тело ответа должно быть в формате JSON\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'status' и значение 'NOT_FOUND'\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.status).is.exist; // проверяем, что в теле ответа поле state\r",
+							"    pm.expect(body.status).to.eql(\"NOT_FOUND\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"comment\": \"Обязательно приходите с друзьями\"\r\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/comments/:commentId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"comments",
+						":commentId"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "{{user1.id}}"
+						},
+						{
+							"key": "commentId",
+							"value": "{{notComment.id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BAD delete comment by not owner user id and event id (CONFLICT)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const body = pm.response.json(); \r",
+							"\r",
+							"pm.test(\"Ответ должен содержать код статуса 409 и данные в формате json\", function() {\r",
+							"    pm.response.to.have.status(409); // код ответа должен быть равен 200 OK\r",
+							"    pm.response.to.be.withBody; // ответ должен содержать тело\r",
+							"    pm.response.to.be.json; // и тело ответа должно быть в формате JSON\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'status' и значение 'NOT_FOUND'\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.status).is.exist; // проверяем, что в теле ответа поле state\r",
+							"    pm.expect(body.status).to.eql(\"CONFLICT\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/comments/:commentId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"comments",
+						":commentId"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "{{user2.id}}"
+						},
+						{
+							"key": "commentId",
+							"value": "{{comment2.id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add comment4 user2 (not owner event)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const body = pm.response.json(); \r",
+							"pm.collectionVariables.set('comment4.id', body.id);\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function() {\r",
+							"    pm.response.to.have.status(201); // код ответа должен быть равен 200 OK\r",
+							"    pm.response.to.be.withBody; // ответ должен содержать тело\r",
+							"    pm.response.to.be.json; // и тело ответа должно быть в формате JSON\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'event'\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.event).is.exist; // проверяем, что в теле ответа поле event\r",
+							"    pm.expect(body.event.id).to.eql(Number(pm.collectionVariables.get('event.id')));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'creatorName' и значение не пустое\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.creatorName).is.exist; // проверяем, что в теле ответа поле state\r",
+							"    pm.expect(body.creatorName).not.to.be.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'created' и значение не пустое\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.created).is.exist; // проверяем, что в теле ответа поле publishedOn    \r",
+							"    pm.expect(body.created).not.to.be.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'creatorName', не равное имени владельца события.\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.creatorName).is.exist; // проверяем, что в теле ответа поле publishedOn  \r",
+							"    const eventOwnerName = body.event.initiator.name;\r",
+							"    pm.expect(body.creatorName).not.to.eql(eventOwnerName);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"comment\": \"С4. Будет еще концерт!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/events/:eventId/comments",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"events",
+						":eventId",
+						"comments"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "{{user2.id}}"
+						},
+						{
+							"key": "eventId",
+							"value": "{{event.id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete comment by user id and event id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать код статуса 204\", function() {\r",
+							"    pm.response.to.have.status(204);     \r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/users/:userId/comments/:commentId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"users",
+						":userId",
+						"comments",
+						":commentId"
+					],
+					"variable": [
+						{
+							"key": "userId",
+							"value": "{{user2.id}}"
+						},
+						{
+							"key": "commentId",
+							"value": "{{comment4.id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all comments by event id (Public)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const body = pm.response.json(); \r",
+							"\r",
+							"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function() {\r",
+							"    pm.response.to.have.status(200); // код ответа должен быть равен 200 OK\r",
+							"    pm.response.to.be.withBody; // ответ должен содержать тело\r",
+							"    pm.response.to.be.json; // и тело ответа должно быть в формате JSON\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать массив, размер массива 3 \", function() {\r",
+							"    pm.expect(body).is.an('array');\r",
+							"    pm.expect(body).to.have.lengthOf(3);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Проверка первого элемента массива, id должно быть равно переменной comment.id\", function () {    \r",
+							"    pm.expect(body[0].id).to.eql(Number(pm.collectionVariables.get('comment.id'))); \r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/events/:eventId/comments?offset&limit=",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"events",
+						":eventId",
+						"comments"
+					],
+					"query": [
+						{
+							"key": "offset",
+							"value": null,
+							"description": "(defaultValue = \"0\")"
+						},
+						{
+							"key": "limit",
+							"value": "",
+							"description": "(defaultValue = \"10\")"
+						}
+					],
+					"variable": [
+						{
+							"key": "eventId",
+							"value": "{{event.id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get comment by id (Public)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const body = pm.response.json(); \r",
+							"\r",
+							"pm.test(\"Ответ должен содержать код статуса 200 и данные в формате json\", function() {\r",
+							"    pm.response.to.have.status(200); // код ответа должен быть равен 200 OK\r",
+							"    pm.response.to.be.withBody; // ответ должен содержать тело\r",
+							"    pm.response.to.be.json; // и тело ответа должно быть в формате JSON\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'id'\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.id).is.exist; // проверяем, что в теле ответа поле event\r",
+							"    pm.expect(body.id).to.eql(Number(pm.collectionVariables.get('comment.id')));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'creatorName' и значение не пустое\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.creatorName).is.exist; // проверяем, что в теле ответа поле state\r",
+							"    pm.expect(body.creatorName).not.to.be.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'created' и значение не пустое\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.created).is.exist; // проверяем, что в теле ответа поле publishedOn    \r",
+							"    pm.expect(body.created).not.to.be.empty;\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/comments/:commentId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"comments",
+						":commentId"
+					],
+					"variable": [
+						{
+							"key": "commentId",
+							"value": "{{comment.id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete comments by event id (Admin)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Ответ должен содержать код статуса 204\", function() {\r",
+							"    pm.response.to.have.status(204);     \r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/admin/comments/events/:eventId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"admin",
+						"comments",
+						"events",
+						":eventId"
+					],
+					"variable": [
+						{
+							"key": "eventId",
+							"value": "{{event.id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BAD delete comments by not valid event id (Admin)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const body = pm.response.json(); \r",
+							"\r",
+							"pm.test(\"Ответ должен содержать код статуса 404 и данные в формате json\", function() {\r",
+							"    pm.response.to.have.status(404); // код ответа должен быть равен 200 OK\r",
+							"    pm.response.to.be.withBody; // ответ должен содержать тело\r",
+							"    pm.response.to.be.json; // и тело ответа должно быть в формате JSON\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'status' и значение 'NOT_FOUND'\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.status).is.exist; // проверяем, что в теле ответа поле state\r",
+							"    pm.expect(body.status).to.eql(\"NOT_FOUND\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/admin/comments/events/:eventId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"admin",
+						"comments",
+						"events",
+						":eventId"
+					],
+					"variable": [
+						{
+							"key": "eventId",
+							"value": "{{notEvent.id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://192.168.0.108:8080",
+			"type": "default"
+		},
+		{
+			"key": "uid",
+			"value": ""
+		},
+		{
+			"key": "сid",
+			"value": ""
+		},
+		{
+			"key": "cat.name",
+			"value": ""
+		},
+		{
+			"key": "category",
+			"value": "9",
+			"type": "default"
+		},
+		{
+			"key": "cat.id",
+			"value": ""
+		},
+		{
+			"key": "event.id",
+			"value": ""
+		},
+		{
+			"key": "comment.id",
+			"value": ""
+		},
+		{
+			"key": "user1.id",
+			"value": ""
+		},
+		{
+			"key": "user2.id",
+			"value": ""
+		},
+		{
+			"key": "notUser.id",
+			"value": ""
+		},
+		{
+			"key": "notEvent.id",
+			"value": ""
+		},
+		{
+			"key": "comment2.id",
+			"value": ""
+		},
+		{
+			"key": "comment3.id",
+			"value": ""
+		},
+		{
+			"key": "notComment.id",
+			"value": ""
+		},
+		{
+			"key": "comment4.id",
+			"value": ""
+		}
+	]
+}
