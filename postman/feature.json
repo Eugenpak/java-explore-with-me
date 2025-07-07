@@ -1589,26 +1589,9 @@
 	"variable": [
 		{
 			"key": "baseUrl",
-			"value": "http://192.168.0.108:8080",
+			"value": "http://localhost:8080",
 			"type": "default"
-		},
-		{
-			"key": "uid",
-			"value": ""
-		},
-		{
-			"key": "сid",
-			"value": ""
-		},
-		{
-			"key": "cat.name",
-			"value": ""
-		},
-		{
-			"key": "category",
-			"value": "9",
-			"type": "default"
-		},
+		},		
 		{
 			"key": "cat.id",
 			"value": ""
