@@ -128,6 +128,57 @@
 			"response": []
 		},
 		{
+			"name": "Add new User3 (guest2)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							" const body = pm.response.json(); \r",
+							"\r",
+							"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function() {\r",
+							"    pm.response.to.have.status(201); // код ответа должен быть равен 200 OK\r",
+							"    pm.response.to.be.withBody; // ответ должен содержать тело\r",
+							"    pm.response.to.be.json; // и тело ответа должно быть в формате JSON\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Ответ должен содержать поле 'id'\", function() {\r",
+							"  // получаем тело ответа в формате JSON\r",
+							"    pm.expect(body.id).is.exist; // проверяем, что в теле ответа поле id\r",
+							"    pm.collectionVariables.set('user3.id', body.id);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Marek\",\r\n    \"email\": \"marek-2025@inbox.ru\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/admin/users",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"admin",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Add new Categories",
 			"event": [
 				{
@@ -152,7 +203,8 @@
 							"pm.test(\"Ответ должен содержать поле 'name'\", function() {\r",
 							"  // получаем тело ответа в формате JSON\r",
 							"    pm.expect(body.name).is.exist; // проверяем, что в теле ответа поле id\r",
-							"    pm.collectionVariables.set('cat.name', body.name);\r",
+							"    \r",
+							"     pm.expect(body.name).not.to.be.empty;\r",
 							"});"
 						],
 						"type": "text/javascript",
@@ -442,7 +494,7 @@
 						"exec": [
 							"const body = pm.response.json(); \r",
 							"pm.collectionVariables.set('comment.id', body.id);\r",
-							"const notUserId = Number(pm.collectionVariables.get('user1.id'))+2;\r",
+							"const notUserId = Number(pm.collectionVariables.get('user1.id'))+10;\r",
 							"const notEventId = Number(pm.collectionVariables.get('event.id'))+10;\r",
 							"pm.collectionVariables.set('notUser.id', notUserId);\r",
 							"pm.collectionVariables.set('notEvent.id', notEventId);\r",
@@ -923,7 +975,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"comment\": \"Комментарий к событием в 18 июля 2025 г (id={{comment.id}}). (Коммент. после редакции и согласования)\"\r\n}",
+					"raw": "{\r\n    \"comment\": \"Комментарий к событием в 18 июля 2025 г (id={{comment.id}}. tag-1807). (Коммент. после редакции и согласования)\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -1206,11 +1258,11 @@
 					"variable": [
 						{
 							"key": "userId",
-							"value": "{{user2.id}}"
+							"value": "{{user3.id}}"
 						},
 						{
 							"key": "commentId",
-							"value": "{{comment2.id}}"
+							"value": "{{comment3.id}}"
 						}
 					]
 				}
@@ -1634,6 +1686,10 @@
 		},
 		{
 			"key": "comment4.id",
+			"value": ""
+		},
+		{
+			"key": "user3.id",
 			"value": ""
 		}
 	]
